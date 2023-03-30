@@ -1,0 +1,32 @@
+<!-- Debouncing in javascript is used to get rid of the unexpected function call, this concept is mostly 
+     used in search api to get rid of the unexpected http request and call the api once user stop typing for a while -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JS Bin</title>
+  </head>
+  <body>
+    <input id="search_input" type="text" onkeyup="betterFunction()" />
+  </body>
+  <script>
+    const getData = () => {
+      const searchInput = document.getElementById("search_input");
+      console.log(searchInput.value);
+    };
+
+    const myDebounce = function (fn, d) {
+      let timer;
+      return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn();
+        }, d);
+      };
+    };
+
+    const betterFunction = myDebounce(getData, 1000);
+  </script>
+</html>

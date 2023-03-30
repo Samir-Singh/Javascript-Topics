@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="countButton">Click to Count</button>
+    <div>Normal Counter : <span id="normalCounter"></span></div>
+    <div>Debounce Counter : <span id="debounceCounter"></span></div>
+    <div>Throttle Counter : <span id="throttleCounter"></span></div>
+  </body>
+  <script>
+    const counterButton = document.querySelector("#countButton");
+    const normalCount = document.querySelector("#normalCounter");
+    const debounceCount = document.querySelector("#debounceCounter");
+    const throttleCount = document.querySelector("#throttleCounter");
+
+    let count1 = 0;
+    let count2 = 0;
+    let count3 = 0;
+
+    normalCount.textContent = count1;
+    debounceCount.textContent = count2;
+    throttleCount.textContent = count3;
+
+    // Count Normally
+    const countNormally = () => {
+      count1++;
+      normalCount.textContent = count1;
+    };
+
+    // Count with debounce
+    function debounce(fn, d) {
+      let timer;
+      let context = this;
+      let args = arguments;
+      return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn.apply(context, args);
+        }, d);
+      };
+    }
+
+    const countWithDebounce = debounce(() => {
+      count2++;
+      debounceCount.textContent = count2;
+    }, 500);
+
+    // Count with throttle
+    function throttle(fn, d) {
+      let flag = true;
+      const context = this;
+      const args = arguments;
+      return function () {
+        if (flag) {
+          fn.apply(context, args);
+          flag = false;
+          setTimeout(() => {
+            flag = true;
+          }, d);
+        }
+      };
+    }
+
+    const countWithThrottle = throttle(() => {
+      count3++;
+      throttleCount.textContent = count3;
+    }, 500);
+
+    counterButton.addEventListener("click", () => {
+      countNormally();
+      countWithDebounce();
+      countWithThrottle();
+    });
+
+    // Now the difference between debounce and throttle is suppose whatever number of time user click on the button to hit the api the debounce function only run when user stop clicking and the delay between the user click the button on the first time and on the second time is the delay which you have decided
+
+    // and in throttle suppose whatever number of time user click on the button the api will calls after every delay
+  </script>
+</html>
