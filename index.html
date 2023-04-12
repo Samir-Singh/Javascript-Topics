@@ -5,24 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      div {
-        border: 1px solid red;
-        padding: 10px;
-      }
-    </style>
   </head>
   <body>
-    <ul id="list">
-      <li>laptop</li>
-      <li>desktop</li>
-      <li>shoes</li>
-    </ul>
+    <button id="button">Button</button>
+    <br />
+    <div>Normal Count : <span id="normalCount"></span></div>
+    <div>Debounce Count : <span id="debounceCount"></span></div>
+    <div>Throttle Count : <span id="throttleCount"></span></div>
   </body>
   <script>
-    document.getElementById("list").addEventListener("click", (e) => {
-      console.log(e.target.innerText);
-      window.location.href = "/" + e.target.innerText;
+    const button = document.getElementById("button");
+    const normalCount = document.getElementById("normalCount");
+    const debounceCount = document.getElementById("debounceCount");
+    const throttleCount = document.getElementById("throttleCount");
+
+    let count1 = 0;
+    let count2 = 0;
+    let count3 = 0;
+
+    normalCount.textContent = count1;
+    debounceCount.textContent = count2;
+    throttleCount.textContent = count3;
+
+    const countNormally = () => {
+      count1++;
+      normalCount.textContent = count1;
+    };
+
+    function debounce(fn, d) {
+      let timer;
+      return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn();
+        }, d);
+      };
+    }
+
+    const countWithDebounce = debounce(() => {
+      count2++;
+      debounceCount.textContent = count2;
+    }, 2000);
+
+    function throttle(fn, d) {
+      let flag = true;
+      return function () {
+        if (flag) {
+          fn();
+          flag = false;
+          setTimeout(() => {
+            flag = true;
+          }, d);
+        }
+      };
+    }
+
+    const countWithThrottle = throttle(() => {
+      count3++;
+      throttleCount.textContent = count3;
+    }, 2000);
+
+    button.addEventListener("click", () => {
+      countNormally();
+      countWithDebounce();
+      countWithThrottle();
     });
   </script>
 </html>
