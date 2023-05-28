@@ -19,7 +19,7 @@ function sendEmail() {
 function login() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // return reject("Error while login");
+      // reject("Error while login");
       console.log("login end");
       resolve();
     }, 1000);
