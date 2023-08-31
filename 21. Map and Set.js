@@ -1,4 +1,4 @@
-// Map is a collection in javascript which is used to store the keys value pairs
+// Map is a collection in javascript which is used to store the key value pairs
 // Set is also like map but set contains unique values
 
 // Different methods to initialize the map
@@ -14,7 +14,7 @@ const myMap = new Map([
 const myMap2 = new Map();
 myMap2.set(1, "a");
 myMap2.set(2, "b");
-myMap2.set(3, "b");
+myMap2.set(3, "c");
 
 // getting data from map
 console.log(myMap.get(1));
