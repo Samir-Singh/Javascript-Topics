@@ -2,7 +2,7 @@
 
 // Filter method is used to filter out the value from an array or filter out the odd one from the array or an object and return the new array
 
-// Reduce method is used to iterate over the whole array or an object and gives us the new value, there is two argument in reduce method function first one is accumulator and second one is the current value and there are two arguments in reduce method also first one is is the function and second one is the initial value of accumulator
+// Reduce method is used to iterate over the whole array and gives us the new value, there is two argument in reduce method function first one is accumulator and second one is the current value and there are two arguments in reduce method also first one is is the function and second one is the initial value of accumulator
 
 let user = [
   { fName: "John", lName: "Singh", age: 26 },
