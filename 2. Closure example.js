@@ -17,6 +17,4 @@ a();
 a();
 a();
 
-/*
-  Here you can see i call the function (a) multiple times but this function execute only one time because of the closure .....  the returned function goo remember from where it is called.
-  */
+// Here you can see i call the function (a) multiple times but this function execute only one time because of the closure .....  the returned function goo remember from where it is called.
