@@ -13,3 +13,20 @@ console.log(d, e); // undefined, undefined
 
 let { name: myName, age: myAge } = { name: "John", age: 22 };
 console.log(myName, myAge); // if you don't want to use right side object variable name
+
+// nested destructuring
+let user = {
+  name: "Natasha",
+  age: 24,
+  fullName: {
+    first: "Natasha",
+    last: "Malkova",
+  },
+};
+
+const {
+  fullName: { first, last },
+  age,
+} = user;
+console.log(first, last);
+console.log(age);
